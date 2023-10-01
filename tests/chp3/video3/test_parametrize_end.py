@@ -1,7 +1,7 @@
 import os
 import pytest
 
-from scripts import data_processor
+from scripts import data_processor, data_aggregator
 
 
 @pytest.fixture(scope="module")
@@ -25,11 +25,13 @@ def process_data(city_list_location):
     yield _specify_type
 
 
-"""
-Note:
-Fixtures with @pytest.fixture(scope="session", autouse=True) must remain in this file
-"""
-# pytest_plugins = [
-#    "tests.fixtures.cities",
-#    "tests.fixtures.data_processing",
-# ]
+@pytest.mark.parametrize("country,stat,expected", [
+    ('Andorra', 'Mean', 1641.42),
+    ('Andorra', 'Median', 1538.02),
+    ('Argentina', 'Median', 125.0),
+    ])
+def test_atitude_stat_per_country(process_data, country, stat, expected):
+    data = process_data(file_name_or_type="clean_map.csv")
+    stat_result = data_aggregator.atitude_stat_per_country(data, country, stat)
+
+    assert stat_result == {'Country': country, stat: expected}

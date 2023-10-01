@@ -81,7 +81,7 @@ to parametrize your test.
 - Find open source Python projects that use pytest and read their tests. Then
 go to the source code to validate your assumptions. Try doing this repeatedly
 over a few projects that use the pytest framework. Here are a few to get you
-started: 
+started:
     - Pytest retains a [list of projects](https://docs.pytest.org/en/latest/projects.html).
     - [sentry, cross-platform application monitoring, with a focus on error reporting](
 https://github.com/getsentry/sentry/blob/master/tests/sentry/eventstream/kafka/test_consumer.py)

@@ -11,7 +11,7 @@ def csv_reader(file_location):
                 row['Long'] = float(row['Long'])
                 row['Altitude'] = float(row['Altitude'])
             except Exception as exp:
-                raise ValueError(str(exp))
+                raise ValueError('Invalid input: ' + str(exp))
 
         return data
 
